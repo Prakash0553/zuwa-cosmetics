@@ -1,17 +1,19 @@
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import { Link, useNavigate } from "react-router";
 
 const Register = () => {
+  const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false);
 
   return (
     <div className="w-full">
-      <div className="bg-[#fbe8f6] flex items-center">
-        <h1>Create an Account</h1>
-        <div className="flex">
-          <span>Home</span>
-          
-          <span>Register</span>
+      <div className="bg-[#fbe8f6] flex flex-col items-center py-10">
+        <h1 className="text-4xl font-semibold mb-2">Create an Account</h1>
+        <div className="flex gap-2">
+          <Link to="/"  className="text-[#404040]">Home</Link>
+          <span className="text-[#404040]">&lt;</span>
+          <span className="text-[#404040]">Register</span>
         </div>
       </div>
       <div className="min-h-screen bg-white px-4 py-8 sm:px-6 md:px-10 lg:px-16 xl:px-24">
@@ -94,7 +96,7 @@ const Register = () => {
               {/* Register Button */}
               <button
                 type="submit"
-                className="group relative overflow-hiddens   rounded-2xl bg-[#e846ad] px-9 py-4 font-semibold text-[13px] text-white"
+                className="group relative overflow-hiddens   rounded-2xl bg-[#e846ad] px-9 py-4 font-semibold text-[13px] text-white cursor-pointer"
               >
                 <span className="absolute inset-x-0 bottom-0 h-0  bg-[#991b60] transition-all duration-500 ease-out group-hover:h-full rounded-2xl" />
                 <span className="relative z-10">REGISTER</span>
@@ -109,7 +111,7 @@ const Register = () => {
                 Already have an Account ?
               </h2>
 
-              <p className="mt-5 max-w-2xl text-base leading-7 text-[#444] sm:text-lg sm:leading-8">
+              <p className="mt-2 mb-4 max-w-2xl text-sm leading-6 text-[#404040] sm:text-lg sm:leading-8">
                 Welcome back. Sign in to access your personalized experience,
                 saved preferences, and more. We're thrilled to have you with us
                 again!
@@ -117,7 +119,8 @@ const Register = () => {
 
               <button
                 type="submit"
-                className="group relative overflow-hiddens   rounded-2xl bg-[#e846ad] px-9 py-4 font-semibold text-[13px] text-white"
+                className="group relative overflow-hiddens   rounded-2xl bg-[#e846ad] px-9 py-4 font-semibold text-[13px] text-white cursor-pointer"
+                onClick={() => navigate("/login")}
               >
                 <span className="absolute inset-x-0 bottom-0 h-0  bg-[#991b60] transition-all duration-500 ease-out group-hover:h-full rounded-2xl" />
                 <span className="relative z-10">LOGIN</span>
