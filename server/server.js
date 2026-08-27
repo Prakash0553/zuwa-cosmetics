@@ -1,9 +1,12 @@
-const express = require("express");
 const dotenv = require("dotenv");
+dotenv.config()
+const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoute")
-dotenv.config();
+const categoryRoutes = require("./routes/categoryRoutes")
+const productRoutes = require("./routes/productRoutes")
+
 
 connectDB();
 const app = express();
@@ -16,6 +19,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/auth", authRoutes)
+app.use("/api/category", categoryRoutes)
+app.use("/api/product", productRoutes)
 
 
 const PORT = process.env.PORT || 3000;
