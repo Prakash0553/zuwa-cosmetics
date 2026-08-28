@@ -17,6 +17,7 @@ const Login = () => {
           <span className="text-[#404040]">Login</span>
         </div>
       </div>
+      
       <div className="min-h-screen bg-white px-4 py-8 sm:px-6 md:px-10 lg:px-16 xl:px-24">
         <div className="mx-auto flex min-h-[90vh] w-full max-w-[1400px] flex-col justify-center gap-12 lg:flex-row lg:items-center lg:gap-16">
           {/* Login */}
