@@ -7,6 +7,7 @@ import mask from "../assets/mask.webp";
 import cleanser from "../assets/pump.webp";
 import wave from "../assets/wave.svg"
 
+
 const Explore = () => {
   return (
     <div className=" bg-[#f7aadf] pt-4 relative">
