@@ -1,5 +1,5 @@
 import { FaCartShopping, FaWhatsapp } from "react-icons/fa6";
-import { Heart } from "lucide-react";
+import { Heart } from "lucide-react"
 
 const ProductCard = ({ image, category, name, price }) => {
   return (
