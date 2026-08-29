@@ -1,15 +1,17 @@
-import Banner from "../components/Banner"
-import ChooseUs from "../components/ChooseUs"
+// import Banner from "../components/Banner"
+// import ChooseUs from "../components/ChooseUs"
+// import ProductHighlight from "../components/ProductHighlight"
 import Explore from "../components/Explore"
-import ProductHighlight from "../components/ProductHighlight"
+import NewArrival from "../components/NewArrival"
 
 const Home = () => {
   return (
     <>  
-    <Banner/>
+    {/* <Banner/> */}
     <Explore/>
-    <ChooseUs/>
-    <ProductHighlight/>
+    <NewArrival/>
+    {/* <ChooseUs/>
+    <ProductHighlight/> */}
     </>
   )
 }
