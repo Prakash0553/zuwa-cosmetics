@@ -45,7 +45,7 @@ const ProductHighlight = () => {
           <div className=" absolute left-[30%] top-5 z-10 w-[170px] -translate-x-1/2 rounded-2xl bg-[#fbe8f6]  text-center lg:top-5 px-2 py-4">
 
             <div className="mx-auto flex h-[66px] w-[66px] items-center justify-center rounded-full bg-white">
-              <img src={lips} alt="" srcset="" />
+              <img src={lips} alt="" srcSet="" />
             </div>
 
             <h3 className="mt-3 text-2xl font-semibold  text-[#3e3e3e]">

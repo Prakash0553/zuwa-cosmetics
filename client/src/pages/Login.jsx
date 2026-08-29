@@ -97,7 +97,7 @@ const Login = () => {
                 New Customer
               </h2>
 
-              <p className="mt-2 mb-4 max-w-2xl text-sm leading-6 text-[#404040] sm:text-lg sm:leading-8">
+              <p className="mt-2 mb-4 max-w-2xl md:text-base text-lg leading-6 text-[#404040]  sm:leading-8">
                 Be part of our growing family of new customers! Join us today and unclock a worlf of exclusive benifits, offers, and personalized experiencs.
               </p>
 

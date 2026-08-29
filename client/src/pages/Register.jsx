@@ -111,7 +111,7 @@ const Register = () => {
                 Already have an Account ?
               </h2>
 
-              <p className="mt-2 mb-4 max-w-2xl text-sm leading-6 text-[#404040] sm:text-lg sm:leading-8">
+              <p className="mt-2 mb-4 max-w-2xl md:text-base leading-6 text-[#404040] text-lg sm:leading-8">
                 Welcome back. Sign in to access your personalized experience,
                 saved preferences, and more. We're thrilled to have you with us
                 again!

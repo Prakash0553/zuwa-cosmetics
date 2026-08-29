@@ -20,7 +20,7 @@ const Footer = () => {
         <div>
           {/* Logo */}
           <div className="mb-5">
-            <img src={logo} width={180} alt="" srcset="" />
+            <img src={logo} width={180} alt=""  />
           </div>
 
           <p className="max-w-[220px] text-[15px] text-[#404040] leading-6">

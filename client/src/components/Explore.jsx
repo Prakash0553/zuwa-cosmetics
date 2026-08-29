@@ -94,7 +94,7 @@ const Explore = () => {
       </div>
 
       <div className="absolute">
-        <img src={wave} alt="" srcset="" />
+        <img src={wave} alt="" />
       </div>
     </div>
   );

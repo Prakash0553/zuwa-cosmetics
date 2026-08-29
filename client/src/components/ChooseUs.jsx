@@ -35,7 +35,7 @@ const ChooseUs = () => {
   return (
     <div className="w-full">
       <div className="w-full">
-        <img src={wave} alt="" srcset="" />
+        <img src={wave} alt=""  />
       </div>
 
       <div className="bg-[#fbe8f6] pb-16 ">
