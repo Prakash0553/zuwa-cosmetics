@@ -47,7 +47,7 @@ const ChooseUs = () => {
         </p>
       </div>
 
-      <div className="bg-[#fbe8f6] grid md:grid-cols-2 lg:grid-cols-4 grid-cols-1 gap-7 px-6">
+      <div className="bg-[#fbe8f6] grid md:grid-cols-2 lg:grid-cols-4 grid-cols-1 gap-7 px-6 pb-12">
         {offers.map((offer, index) => (
           <div key={index} className="w-[290px] h-[200px] relative transition duration-500 ease-in-out hover:-translate-y-5">
             <div className="bg-white rounded-2xl w-full h-full p-6 ">

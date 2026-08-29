@@ -5,6 +5,8 @@ import Navbar from "./components/Navbar"
 import Banner from "./components/Banner"
 import Explore from "./components/Explore"
 import ChooseUs from "./components/ChooseUs"
+import ProductHighlight from "./components/ProductHighlight"
+import Footer from "./components/Footer"
 
 const App = () => {
   return (
@@ -13,10 +15,12 @@ const App = () => {
     <Banner/>
     <Explore/>
     <ChooseUs/>
+    <ProductHighlight/>
       <Routes>
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
       </Routes>
+    <Footer/>  
   
     </>
   )
