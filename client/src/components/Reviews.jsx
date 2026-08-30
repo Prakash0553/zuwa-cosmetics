@@ -47,7 +47,7 @@ const Review = () => {
       >
         <span className="absolute inset-x-0 bottom-0 h-0 rounded-2xl  transition-all bg-[#991b60] duration-500 ease-out group-hover:h-full" />
 
-        <span className="relative z-10 text-base">READ ALL REVIEWS</span>
+        <span className="relative z-10 text-sm">READ ALL REVIEWS</span>
       </button>
     </div>
   );
