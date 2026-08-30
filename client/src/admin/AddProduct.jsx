@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useCreateProduct } from "../hooks/useProducts";
+import toast from "react-hot-toast";
 
 const AddProduct = () => {
   const { mutate, isPending } = useCreateProduct();
@@ -34,14 +35,32 @@ const AddProduct = () => {
     data.append("stock", formData.stock);
     data.append("image", formData.image);
 
-    mutate(data);
+    mutate(data, {
+      onSuccess: (response) => {
+        setFormData({
+          name: "",
+          description: "",
+          price: "",
+          category: "",
+          stock: "",
+          image: null,
+        });
+
+        toast.success(response.message);
+      },
+
+      onError: (error) => {
+        toast.error(error.response?.data?.message || "Something went wrong");
+      },
+    });
   };
 
   return (
-    <div className="w-full min-h-screen bg-[#fbf5f5] flex items-center justify-center" >
-
+    <div className="w-full min-h-screen bg-[#fbf5f5] flex items-center justify-center">
       <div className="w-full max-w-[800px] bg-white rounded-3xl m-20">
-        <h2 className="text-center my-12 text-2xl font-semibold">Add Product</h2>
+        <h2 className="text-center my-12 text-2xl font-semibold">
+          Add Product
+        </h2>
 
         <form
           onSubmit={handleSubmit}
@@ -55,6 +74,7 @@ const AddProduct = () => {
             <input
               type="text"
               name="name"
+              required
               placeholder="Product name"
               value={formData.name}
               onChange={handleChange}
@@ -69,6 +89,7 @@ const AddProduct = () => {
             <input
               type="text"
               name="description"
+              required
               placeholder="Description"
               value={formData.description}
               onChange={handleChange}
@@ -80,59 +101,66 @@ const AddProduct = () => {
             <label className=" block  text-base font-semibold text-[#555] mb-2">
               Price <span className="text-red-500">*</span>
             </label>
-          <input
-            type="number"
-            name="price"
-            placeholder="Price"
-            value={formData.price}
-            onChange={handleChange}
-            className="h-14 w-[500px] rounded-xl border text-sm border-gray-200 px-6  font-medium text-gray-700 outline-none placeholder:text-gray-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-100"
-          />
+            <input
+              type="number"
+              name="price"
+              required
+              placeholder="Price"
+              value={formData.price}
+              onChange={handleChange}
+              className="h-14 w-[500px] rounded-xl border text-sm border-gray-200 px-6  font-medium text-gray-700 outline-none placeholder:text-gray-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-100"
+            />
           </div>
 
           <div>
             <label className=" block  text-base font-semibold text-[#555] mb-2">
               Category <span className="text-red-500">*</span>
             </label>
-          <input
-            type="text"
-            name="category"
-            placeholder="Category ID"
-            value={formData.category}
-            onChange={handleChange}
-            className="h-14 w-[500px] rounded-xl border text-sm border-gray-200 px-6  font-medium text-gray-700 outline-none placeholder:text-gray-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-100"
-          />
+            <input
+              type="text"
+              name="category"
+              required
+              placeholder="Category ID"
+              value={formData.category}
+              onChange={handleChange}
+              className="h-14 w-[500px] rounded-xl border text-sm border-gray-200 px-6  font-medium text-gray-700 outline-none placeholder:text-gray-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-100"
+            />
           </div>
 
           <div>
             <label className=" block  text-base font-semibold text-[#555] mb-2">
               Quantity <span className="text-red-500">*</span>
             </label>
-          <input
-            type="number"
-            name="stock"
-            placeholder="Stock"
-            value={formData.stock}
-            onChange={handleChange}
-            className="h-14 w-[500px] rounded-xl border text-sm border-gray-200 px-6  font-medium text-gray-700 outline-none placeholder:text-gray-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-100"
-          />
+            <input
+              type="number"
+              name="stock"
+              required
+              placeholder="Stock"
+              value={formData.stock}
+              onChange={handleChange}
+              className="h-14 w-[500px] rounded-xl border text-sm border-gray-200 px-6  font-medium text-gray-700 outline-none placeholder:text-gray-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-100"
+            />
           </div>
 
           <div>
             <label className=" block  text-base font-semibold text-[#555] mb-2">
               Image <span className="text-red-500">*</span>
             </label>
-          <input
-            type="file"
-            name="image"
-            accept="image/*"
-            onChange={handleChange}
-            className="h-14 w-[500px] rounded-xl border text-sm border-gray-200 px-6  font-medium text-gray-700 outline-none placeholder:text-gray-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-100"
-          />
+            <input
+              type="file"
+              name="image"
+              required
+              accept="image/*"
+              onChange={handleChange}
+              className="h-14 w-[500px] rounded-xl border text-sm border-gray-200 px-6  font-medium text-gray-700 outline-none placeholder:text-gray-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-100"
+            />
           </div>
 
-          <button type="submit" disabled={isPending}
-          className="group relative overflow-hiddens   rounded-2xl bg-[#e846ad] px-9 py-4 font-semibold text-[13px] text-white cursor-pointer mb-16">
+          <button
+            type="submit"
+            disabled={isPending}
+            className="group relative overflow-hiddens   rounded-2xl bg-[#e846ad] px-9 py-4 font-semibold text-[13px] text-white cursor-pointer mb-16"
+          >
             {isPending ? "Creating..." : "Add Product"}
           </button>
         </form>
@@ -142,4 +170,3 @@ const AddProduct = () => {
 };
 
 export default AddProduct;
-

@@ -1,16 +1,12 @@
+import { useProducts } from "../hooks/useProducts";
 import ProductCard from "./ProductCard";
-import pro1 from "../assets/pro1.webp";
-
-const products = [
-  {
-    image: pro1,
-    category: "Others",
-    name: "Zuwa Gluta Combo",
-    price: 1745,
-  },
-];
 
 const NewArrival = () => {
+  const {data: products, isLoading, error} = useProducts()
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>{error.message}</p>;
+
   return (
     <div className="w-full px-4 py-20">
       <div className=" flex flex-col items-center py-8">
@@ -19,11 +15,11 @@ const NewArrival = () => {
       </div>
     
     <div className="grid grid-cols-1 gap-10 px-6 md:grid-cols-2 lg:grid-cols-4 mt-6">
-      {products.map((product, index) => (
+      {products && products.map((product, index) => (
         <ProductCard
           key={index}
           image={product.image}
-          category={product.category}
+          category={product.category.name}
           name={product.name}
           price={product.price}
         />

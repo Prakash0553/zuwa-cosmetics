@@ -5,18 +5,43 @@ const cloudinary = require("../config/cloudinary");
 const createProduct = async (req, res) => {
   try {
     const { name, description, price, category, stock } = req.body;
-    let imageUrl = '';
+
+    if (!name || !description || !price || !category) {
+      return res.status(400).json({
+        success: false,
+        message: "Name, description, price and category are required",
+      });
+    }
+
+    let imageUrl = "";
+
     if (req.file) {
       const result = await cloudinary.uploader.upload(req.file.path);
       imageUrl = result.secure_url;
     }
+
     const product = new Product({
-      name, description, price, category, stock, image:imageUrl
+      name,
+      description,
+      price,
+      category,
+      stock,
+      image: imageUrl,
     });
+
     const createdProduct = await product.save();
-    res.status(201).json(createdProduct);
+
+    return res.status(201).json({
+      success: true,
+      message: "Product created successfully",
+      product: createdProduct,
+    });
+
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
   }
 };
 

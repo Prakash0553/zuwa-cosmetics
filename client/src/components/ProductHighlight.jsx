@@ -61,7 +61,7 @@ const ProductHighlight = () => {
           <div className=" absolute bottom-[20%] left-4 z-10 w-[170px] rounded-2xl bg-[#fbe8f6]  text-center sm:left-10 lg:left-0 px-2 py-4">
 
             <div className="mx-auto flex h-[66px] w-[66px] items-center justify-center rounded-full bg-white">
-              <img src={tooth} alt="" srcset="" />
+              <img src={tooth} alt="" srcSet="" />
             </div>
 
             <h3 className="mt-3 text-2xl font-semibold  text-[#3e3e3e]">
@@ -77,7 +77,7 @@ const ProductHighlight = () => {
           <div className=" absolute bottom-[20%] left-[67%] z-10 w-[170px] rounded-2xl bg-[#fbe8f6]  text-center sm:right-10 lg:right-0 px-2 py-4">
 
             <div className="mx-auto flex h-[66px] w-[66px] items-center justify-center rounded-full bg-white">
-              <img src={lips} alt="" srcset="" />
+              <img src={lips} alt="" srcSet="" />
             </div>
 
             <h3 className="mt-3 text-2xl font-semibold  text-[#3e3e3e]">
@@ -93,7 +93,7 @@ const ProductHighlight = () => {
           <div className=" absolute bottom-[2%] right-[34%] z-10 w-[170px] rounded-2xl bg-[#fbe8f6] text-center px-2 py-4">
 
             <div className="mx-auto flex h-[66px] w-[66px] items-center justify-center rounded-full bg-white">
-              <img src={lips} alt="" srcset="" />
+              <img src={lips} alt="" srcSet="" />
             </div>
 
             <h3 className="mt-3 text-2xl font-semibold  text-[#3e3e3e]">

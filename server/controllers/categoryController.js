@@ -14,9 +14,17 @@ const createCategory = async (req, res) => {
       image: imageUrl
     });
     const createdCategory = await category.save();
-    res.status(201).json(createdCategory);
+
+    return res.status(201).json({
+      success: true,
+      message: "Category created successfully",
+      category: createdCategory,
+    });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
   }
 };
 

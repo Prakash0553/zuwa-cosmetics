@@ -51,7 +51,7 @@ const ProductCard = ({ image, category, name, price }) => {
           type="submit"
           className="group relative overflow-hiddens   rounded-2xl bg-[#e846ad] px-4 py-3 font-semibold text-[13px] text-white cursor-pointer flex items-center justify-center gap-3 mb-4 mt-4"
         >
-          <span className="absolute inset-x-0 bottom-0 h-0  bg-[#991b60] transition-all duration-500 ease-out group-hover:h-full rounded-2xl" />
+          <span className="absolute inset-x-0 bottom-0 h-0  bg-[#991b60] transition-all duration-500 ease-in group-hover:h-full rounded-2xl" />
           <span className="relative z-10 text-base">Add to cart</span>
           <FaCartShopping className="text-xl" />
         </button>
