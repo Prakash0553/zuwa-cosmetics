@@ -4,7 +4,8 @@ import {Search,Heart,ShoppingBag,UserRound,X, Menu} from "lucide-react";
 
 import logo from "../assets/logo.webp"
 import { useState } from "react";
-const Navbar = () => {
+
+const Navbar = ({onCartClick}) => {
   const navigate= useNavigate()
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -100,7 +101,7 @@ const Navbar = () => {
 
           {/* Cart */}
           <button
-            onClick={() => navigate("/cart")}
+            onClick={onCartClick}
             className="shrink-0 transition-transform duration-200 hover:scale-110"
           >
             <ShoppingBag size={26} strokeWidth={1.4} />

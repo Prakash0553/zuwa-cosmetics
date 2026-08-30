@@ -81,16 +81,14 @@ const ProductDetail = () => {
             </div>
 
             <button
-          type="submit"
-          className="group relative cursor-pointer overflow-hidden rounded-2xl bg-[#e84cb0] px-3 py-3 font-semibold text-[13px] text-white flex items-center gap-2"
-        >
-          <span className="absolute inset-x-0 bottom-0 h-0 rounded-2xl bg-[#991b60] transition-all duration-500 ease-out group-hover:h-full" />
+              type="submit"
+              className="group relative cursor-pointer overflow-hidden rounded-2xl bg-[#e84cb0] px-3 py-3 font-semibold text-[13px] text-white flex items-center gap-2"
+            >
+              <span className="absolute inset-x-0 bottom-0 h-0 rounded-2xl bg-[#991b60] transition-all duration-500 ease-out group-hover:h-full" />
 
-          <span className="relative z-10 text-sm">ADD TO CART</span>
-          <FaCartShopping className="text-xl" />
-        </button>
-
-            
+              <span className="relative z-10 text-sm">ADD TO CART</span>
+              <FaCartShopping className="text-xl" />
+            </button>
           </div>
         </div>
       </div>
