@@ -11,3 +11,9 @@ export const createProduct = async (formData) => {
   const response = await axios.post(API_URL, formData);
   return response.data;
 };
+
+export const getProductById = async (id) => {
+  const response = await axios.get(`${API_URL}/${id}`);
+
+  return response.data;
+};

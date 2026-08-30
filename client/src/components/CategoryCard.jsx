@@ -1,16 +1,17 @@
-const CategoryCard = ({image,category,products}) => {
+const CategoryCard = ({image,name,products}) => {
   return (
     <div className="max-w-[333px] bg-[#f0eff2] rounded-2xl pt-8">
 
-      <div className="w-full flex items-center justify-center rounded-2xl relative ">
+      <div className="w-full h-[280px] flex items-center justify-center rounded-2xl relative ">
         <img src={image} width={180} alt="" className="py-8" />
-        <span className="text-xs font-bold text-white bg-[#e84cb0] rounded-lg absolute right-4 -top-2 px-2 py-2">
+        <span className="text-xs max-h-[220px] font-bold text-white bg-[#e84cb0] rounded-lg absolute right-4 -top-2 px-2 py-2">
           {products} <span>Products</span>
         </span>
       </div>
       
       <div className="flex items-center justify-between bg-[#f7aadf] rounded-b-2xl px-3">
-        <h3 className="text-[#3e3e3e] text-lg font-semibold">{category}</h3>
+        <h3 className="text-[#3e3e3e] text-lg font-semibold">{name}</h3>
+
         <button
           type="submit"
           className="group relative overflow-hiddens   rounded-2xl bg-white px-3 py-3 font-semibold text-[13px] text-[#e84cb0] cursor-pointer flex items-center justify-center gap-3 mb-4 mt-4 hover:text-white"

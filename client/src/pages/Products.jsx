@@ -28,6 +28,7 @@ const Products = () => {
         {products && products.map((product, index) => (
           <ProductCard
             key={index}
+            id={product._id}
             image={product.image}
             category={product.category.name}
             name={product.name}

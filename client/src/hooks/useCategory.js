@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { createCategory, getCategories } from "../api/categoryApi";
 
-export const useCategory = () => {
+export const useGetCategory = () => {
   return useQuery({
     queryKey: ["category"],
     queryFn: getCategories,

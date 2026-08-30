@@ -1,37 +1,16 @@
 import { useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import CategoryCard from "./CategoryCard";
-import pro1 from "../assets/pro1.webp"
-const categories = [
-  {
-    products: 5,
-    image: pro1,
-    category: "Others",
-  },
-  {
-    products: 8,
-    image: pro1,
-    category: "Soap",
-  },
-  {
-    products: 6,
-    image: pro1,
-    category: "Serum",
-  },
-  {
-    products: 4,
-    image: pro1,
-    category: "Toner",
-  },
-  {
-    products: 7,
-    image: pro1,
-    category: "Sunscreen",
-  },
-];
+import { useGetCategory } from "../hooks/useCategory";
 
 const BrowseCategory = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const {data: categories, isLoading, error} = useGetCategory()
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>{error.message}</p>;
+
 
   const nextSlide = () => {
     if (currentIndex < categories.length - 4) {
@@ -66,7 +45,7 @@ const BrowseCategory = () => {
             >
               <CategoryCard
                 image={cat.image}
-                category={cat.category}
+                name={cat.name}
                 products={cat.products}
               />
             </div>

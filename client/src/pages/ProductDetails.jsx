@@ -1,16 +1,26 @@
 import { FaHeart, FaCartShopping } from "react-icons/fa6";
 import { FaMinus, FaPlus, FaChevronRight } from "react-icons/fa";
-import pro1 from "../assets/pro1.webp";
+import {  useParams } from "react-router";
+import { useProductById } from "../hooks/useProducts";
 
 const ProductDetail = () => {
+  const { id } = useParams();
+
+  const { data: product, isLoading, error } = useProductById(id);
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>{error.message}</p>;
+  console.log(product);
+
   return (
     <div className="w-full">
       {/* Breadcrumb */}
       <div className="bg-[#fbe8f6] px-4 py-3 text-lg text-[#404040]">
         <div className="flex flex-wrap items-center gap-4">
-          <span className="text-sm">Home</span>
+          <span className="text-sm hover:text-[#e846ad]" 
+          >Home</span>
           <FaChevronRight className="text-sm text-gray-400" />
-          <span className="text-sm">Products</span>
+          <span className="text-sm hover:text-[#e846ad]">Products</span>
           <FaChevronRight className="text-sm text-gray-400" />
           <span className="text-sm">Vitamin C effervescent tablets</span>
         </div>
@@ -22,28 +32,28 @@ const ProductDetail = () => {
         <div>
           <div className="flex h-[580px] items-center justify-center rounded-2xl bg-[#f0eff2] ">
             <img
-              src={pro1}
+              src={product.image}
               alt=""
               className="h-full w-full px-16 py-4 object-cover rounded-2xl"
             />
           </div>
 
           <div className="mt-4 h-28 w-28 rounded-2xl border-2 border-[#e846ad] bg-[#f1f1f3] p-3">
-            <img src={pro1} alt="" className="h-full w-full object-contain" />
+            <img src={product.image} alt="" className="h-full w-full object-contain" />
           </div>
         </div>
 
         {/* Right */}
         <div className="flex flex-col">
           <div className="">
-            <p className="text-base text-[#404040] font-semibold">Others</p>
+            <p className="text-base text-[#404040] font-semibold">{product.category.name}</p>
 
             <div className="flex items-center justify-between gap-2">
               <h1 className="mt-2 text-3xl font-semibold leading-tight text-[#3e3e3e]">
-                Vitamin C effervescent tablets
+                {product.name}
               </h1>
               <span className="rounded-xl bg-[#fbe8f6] px-3 py-2 font-semibold text-[#459e75]">
-                IN STOCK
+                {product.stock > 0 ? " IN STOCK" : "EMPTY"}
               </span>
 
               <button className="flex h-12 w-12 items-center justify-center rounded-full bg-[#fbe8f6] text-2xl text-[#991b60]">
@@ -52,15 +62,10 @@ const ProductDetail = () => {
             </div>
           </div>
 
-          <p className="mt-7 text-xl font-semibold text-[#991b60]">Rs 545.00</p>
+          <p className="mt-7 text-xl font-semibold text-[#991b60]">{product.price}</p>
 
           <p className="mt-6 text-base leading-relaxed text-[#2e2e2e]">
-            <strong>Zuwa Vitamin C Effervescent Tablets 1000 mg</strong> are
-            dietary supplements designed to support immunity and overall health.
-            Each effervescent tablet contains{" "}
-            <strong>1000 mg of Vitamin C (ascorbic acid)</strong>, a powerful
-            antioxidant that helps protect cells from oxidative stress, boosts
-            the immune system, and supports healthy skin and collagen formation.
+            {product.description}
           </p>
 
           <hr className="my-8 border-[#d2cdce]" />
