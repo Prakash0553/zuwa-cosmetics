@@ -1,77 +1,145 @@
+import { useState } from "react";
+import { useCreateProduct } from "../hooks/useProducts";
+
 const AddProduct = () => {
+  const { mutate, isPending } = useCreateProduct();
+
+  const [formData, setFormData] = useState({
+    name: "",
+    description: "",
+    price: "",
+    category: "",
+    stock: "",
+    image: null,
+  });
+
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: files ? files[0] : value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const data = new FormData();
+
+    data.append("name", formData.name);
+    data.append("description", formData.description);
+    data.append("price", formData.price);
+    data.append("category", formData.category);
+    data.append("stock", formData.stock);
+    data.append("image", formData.image);
+
+    mutate(data);
+  };
+
   return (
-    <div className="w-full max-w-[1020px]">
-      <h1 className="text-4xl font-semibold mb-2 text canter">Add Products</h1>
+    <div className="w-full min-h-screen bg-[#fbf5f5] flex items-center justify-center" >
 
-      <div>
-      <form className="space-y-8">
-        {/* Full Name */}
-        <div>
-          <label className="mb-2 block text-sm font-semibold text-[#555]">
-            Full Name <span className="text-red-500">*</span>
-          </label>
+      <div className="w-full max-w-[800px] bg-white rounded-3xl m-20">
+        <h2 className="text-center my-12 text-2xl font-semibold">Add Product</h2>
 
-          <input
-            type="text"
-            placeholder="Full Name"
-            className="h-14 w-full rounded-xl border text-sm border-gray-200 px-6  font-medium text-gray-700 outline-none placeholder:text-gray-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-100"
-          />
-        </div>
-
-        {/* Email */}
-        <div>
-          <label className="mb-2 block text-sm font-semibold text-[#555]">
-            Email Address <span className="text-red-500">*</span>
-          </label>
-
-          <input
-            type="email"
-            placeholder="Enter your Email Address"
-            className="h-14 w-full rounded-xl border border-gray-200 px-6 text-sm font-medium text-gray-700 outline-none placeholder:text-gray-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-100"
-          />
-        </div>
-
-        {/* Phone */}
-        <div>
-          <label className="mb-2 block text-sm font-semibold text-[#555]">
-            Phone Number <span className="text-red-500">*</span>
-          </label>
-
-          <div className="flex h-14 w-full overflow-hidden rounded-xl border border-gray-200 focus-within:border-pink-500 focus-within:ring-2 focus-within:ring-pink-100">
-            <div className="flex w-20 shrink-0 items-center justify-center bg-gray-100 text-base font-semibold text-gray-700 sm:w-24">
-              +977
-            </div>
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col items-center justify-center space-y-4 "
+        >
+          <div className=" ">
+            <label className=" block  text-base font-semibold text-[#555] mb-2">
+              Product Name <span className="text-red-500">*</span>
+            </label>
 
             <input
-              type="tel"
-              placeholder="Enter your Phone Number"
-              className="min-w-0 flex-1 px-4 text-sm font-medium text-gray-700 outline-none placeholder:text-gray-400 sm:px-6"
+              type="text"
+              name="name"
+              placeholder="Product name"
+              value={formData.name}
+              onChange={handleChange}
+              className="h-12 w-[500px] rounded-xl border text-sm border-gray-200 px-6  font-medium text-gray-700 outline-none placeholder:text-gray-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-100"
             />
           </div>
-        </div>
 
-        {/* Password */}
-        <div>
-          <label className="mb-2 block text-sm font-semibold text-[#555]">
-            Password <span className="text-red-500">*</span>
-          </label>
+          <div>
+            <label className=" block  text-base font-semibold text-[#555] mb-2">
+              Product Name <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              name="description"
+              placeholder="Description"
+              value={formData.description}
+              onChange={handleChange}
+              className="h-14 w-[500px] rounded-xl border text-sm border-gray-200 px-6  font-medium text-gray-700 outline-none placeholder:text-gray-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-100"
+            />
+          </div>
+
+          <div>
+            <label className=" block  text-base font-semibold text-[#555] mb-2">
+              Price <span className="text-red-500">*</span>
+            </label>
           <input
-            type={"password"}
-            placeholder="Enter your Password"
-            className="h-full w-full rounded-xl px-6 pr-14 text-sm font-medium text-gray-700 outline-none placeholder:text-gray-400"
+            type="number"
+            name="price"
+            placeholder="Price"
+            value={formData.price}
+            onChange={handleChange}
+            className="h-14 w-[500px] rounded-xl border text-sm border-gray-200 px-6  font-medium text-gray-700 outline-none placeholder:text-gray-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-100"
           />
-        </div>
+          </div>
 
-        {/* Register Button */}
-        <button
-          type="submit"
-          className="overflow-hiddens   rounded-2xl bg-[#e846ad] px-9 py-4 font-semibold text-[13px] text-white cursor-pointer"
-        >
-        </button>
-      </form>
+          <div>
+            <label className=" block  text-base font-semibold text-[#555] mb-2">
+              Category <span className="text-red-500">*</span>
+            </label>
+          <input
+            type="text"
+            name="category"
+            placeholder="Category ID"
+            value={formData.category}
+            onChange={handleChange}
+            className="h-14 w-[500px] rounded-xl border text-sm border-gray-200 px-6  font-medium text-gray-700 outline-none placeholder:text-gray-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-100"
+          />
+          </div>
+
+          <div>
+            <label className=" block  text-base font-semibold text-[#555] mb-2">
+              Quantity <span className="text-red-500">*</span>
+            </label>
+          <input
+            type="number"
+            name="stock"
+            placeholder="Stock"
+            value={formData.stock}
+            onChange={handleChange}
+            className="h-14 w-[500px] rounded-xl border text-sm border-gray-200 px-6  font-medium text-gray-700 outline-none placeholder:text-gray-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-100"
+          />
+          </div>
+
+          <div>
+            <label className=" block  text-base font-semibold text-[#555] mb-2">
+              Image <span className="text-red-500">*</span>
+            </label>
+          <input
+            type="file"
+            name="image"
+            accept="image/*"
+            onChange={handleChange}
+            className="h-14 w-[500px] rounded-xl border text-sm border-gray-200 px-6  font-medium text-gray-700 outline-none placeholder:text-gray-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-100"
+          />
+          </div>
+
+          <button type="submit" disabled={isPending}
+          className="group relative overflow-hiddens   rounded-2xl bg-[#e846ad] px-9 py-4 font-semibold text-[13px] text-white cursor-pointer mb-16">
+            {isPending ? "Creating..." : "Add Product"}
+          </button>
+        </form>
       </div>
     </div>
   );
 };
 
 export default AddProduct;
+
