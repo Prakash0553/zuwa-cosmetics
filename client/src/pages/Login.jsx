@@ -2,10 +2,58 @@
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { Link, useNavigate } from "react-router";
+import toast from "react-hot-toast";
+import { useLoginUser } from "../hooks/useAuth";
+import {useDispatch} from "react-redux"
+import {setUser} from "../store/authSlice"
 
 const Login = () => {
-  const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] =useState({
+    email: "",
+    password: ""
+  })
+
+  const {mutate, isPending, error} = useLoginUser()
+
+  if(error) return <p>{error.message}</p>
+
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+  e.preventDefault();
+
+  mutate(formData, {
+    onSuccess: (response) => {
+      dispatch(setUser(response));
+      navigate("/");
+
+      setFormData({
+        email: "",
+        password: "",
+      });
+
+      toast.success("Login successful");
+    },
+
+    onError: (error) => {
+      toast.error(
+        error.response?.data?.message || "Something went wrong"
+      );
+      console.log(error.response?.data?.message);
+    },
+  });
+};
 
   return (
     <div className="w-full">
@@ -26,7 +74,9 @@ const Login = () => {
               Login
             </h1>
 
-            <form className="space-y-8">
+            <form 
+            onSubmit={handleSubmit}
+             className="space-y-8">
 
               {/* Email */}
               <div>
@@ -36,6 +86,9 @@ const Login = () => {
 
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   placeholder="Enter your Email Address"
                   className="h-14 w-full rounded-xl border border-gray-200 px-6 text-sm font-medium text-gray-700 outline-none placeholder:text-gray-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-100"
                 />
@@ -50,6 +103,9 @@ const Login = () => {
                 <div className="relative flex h-14 w-full items-center rounded-xl border border-gray-200 focus-within:border-pink-500 focus-within:ring-2 focus-within:ring-pink-100">
                   <input
                     type={showPassword ? "text" : "password"}
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
                     placeholder="Enter your Password"
                     className="h-full w-full rounded-xl px-6 pr-14 text-sm font-medium text-gray-700 outline-none placeholder:text-gray-400"
                   />
@@ -85,7 +141,11 @@ const Login = () => {
                 cursor-pointer"
               >
                 <span className="absolute inset-x-0 bottom-0 h-0  bg-[#991b60] transition-all duration-500 ease-out group-hover:h-full rounded-2xl" />
-                <span className="relative z-10">LOGIN</span>
+                <span className="relative z-10">
+                  {
+                    isPending ? "Logging In" : "LOGIN"
+                  }
+                </span>
               </button>
             </form>
           </div>

@@ -13,27 +13,38 @@ import AdminDashboard from "./admin/AdminDashboard";
 import AddProduct from "./admin/AddProduct";
 import AddCategory from "./admin/AddCategory";
 import Shop from "./pages/Shop";
+import ProfileMenu from "./components/Profile";
 
 const App = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   return (
     <>
-      <Navbar onCartClick={() => setIsCartOpen(true)} />
+      <Navbar
+        onCartClick={() => setIsCartOpen(true)}
+        onProfileClick={() => setIsProfileOpen(true)}
+      />
+
       <ShoppingCart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+
+      <ProfileMenu
+        isOpen={isProfileOpen}
+        onClose={() => setIsProfileOpen(false)}
+      />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/about" element={<About />} />
         <Route path="/detail" element={<ProductDetail />} />
-        <Route path="/products/:id" element={<ProductDetail/>} />
+        <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/shop" element={<Shop/>}/>
+        <Route path="/shop" element={<Shop />} />
 
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/add" element={<AddProduct />} />
-        <Route path="/admin/addcat" element={<AddCategory/>}/>
+        <Route path="/admin/addcat" element={<AddCategory />} />
       </Routes>
       <Footer />
     </>
