@@ -14,6 +14,7 @@ import AddProduct from "./admin/AddProduct";
 import AddCategory from "./admin/AddCategory";
 import Shop from "./pages/Shop";
 import ProfileMenu from "./components/Profile";
+import ViewCart from "./pages/Cart";
 
 const App = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -41,6 +42,7 @@ const App = () => {
         <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/products" element={<Products />} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="/cart" element={<ViewCart/>}/>
 
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/add" element={<AddProduct />} />

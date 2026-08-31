@@ -1,24 +1,47 @@
 import { FaHeart, FaCartShopping } from "react-icons/fa6";
 import { FaMinus, FaPlus, FaChevronRight } from "react-icons/fa";
-import {  useParams } from "react-router";
+import { useParams } from "react-router";
 import { useProductById } from "../hooks/useProducts";
+import { useAddToCart } from "../hooks/useCart";
+import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
 
 const ProductDetail = () => {
   const { id } = useParams();
+  const user = useSelector((state) => state.auth.user);
 
   const { data: product, isLoading, error } = useProductById(id);
+  const { mutate, isPending } = useAddToCart();
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>{error.message}</p>;
-  console.log(product);
+  //console.log(product);
+
+  const handleAddToCart = () => {
+    mutate(
+      {
+        userId: user._id,
+        productId: product._id,
+        quantity: 1,
+      },
+      {
+        onSuccess: (response) => {
+          toast.success(response.message || "Added to cart!");
+        },
+
+        onError: (error) => {
+          toast.error(error.response?.data?.message || "Failed to add to cart");
+        },
+      },
+    );
+  };
 
   return (
     <div className="w-full">
       {/* Breadcrumb */}
       <div className="bg-[#fbe8f6] px-4 py-3 text-lg text-[#404040]">
         <div className="flex flex-wrap items-center gap-4">
-          <span className="text-sm hover:text-[#e846ad]" 
-          >Home</span>
+          <span className="text-sm hover:text-[#e846ad]">Home</span>
           <FaChevronRight className="text-sm text-gray-400" />
           <span className="text-sm hover:text-[#e846ad]">Products</span>
           <FaChevronRight className="text-sm text-gray-400" />
@@ -39,14 +62,20 @@ const ProductDetail = () => {
           </div>
 
           <div className="mt-4 h-28 w-28 rounded-2xl border-2 border-[#e846ad] bg-[#f1f1f3] p-3">
-            <img src={product.image} alt="" className="h-full w-full object-contain" />
+            <img
+              src={product.image}
+              alt=""
+              className="h-full w-full object-contain"
+            />
           </div>
         </div>
 
         {/* Right */}
         <div className="flex flex-col">
           <div className="">
-            <p className="text-base text-[#404040] font-semibold">{product.category.name}</p>
+            <p className="text-base text-[#404040] font-semibold">
+              {product.category.name}
+            </p>
 
             <div className="flex items-center justify-between gap-2">
               <h1 className="mt-2 text-3xl font-semibold leading-tight text-[#3e3e3e]">
@@ -62,7 +91,9 @@ const ProductDetail = () => {
             </div>
           </div>
 
-          <p className="mt-7 text-xl font-semibold text-[#991b60]">{product.price}</p>
+          <p className="mt-7 text-xl font-semibold text-[#991b60]">
+            {product.price}
+          </p>
 
           <p className="mt-6 text-base leading-relaxed text-[#2e2e2e]">
             {product.description}
@@ -86,12 +117,15 @@ const ProductDetail = () => {
             </div>
 
             <button
+              onClick={handleAddToCart}
               type="submit"
               className="group relative cursor-pointer overflow-hidden rounded-2xl bg-[#e84cb0] px-3 py-3 font-semibold text-[13px] text-white flex items-center gap-2"
             >
               <span className="absolute inset-x-0 bottom-0 h-0 rounded-2xl bg-[#991b60] transition-all duration-500 ease-out group-hover:h-full" />
 
-              <span className="relative z-10 text-sm">ADD TO CART</span>
+              <span className="relative z-10 text-sm">
+                {isPending ? "Adding ..." : "ADD TO CART"}
+              </span>
               <FaCartShopping className="text-xl" />
             </button>
           </div>

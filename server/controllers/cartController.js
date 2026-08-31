@@ -116,4 +116,87 @@ const fetchCartItems = async (req, res) => {
   }
 };
 
-module.exports={ addToCart ,fetchCartItems}
+const updateCartQuantity = async (req, res) => {
+  try {
+    const { userId, productId } = req.params;
+    const { quantity } = req.body;
+
+    if (!Number.isInteger(quantity) || quantity < 1) {
+      return res.status(400).json({
+        success: false,
+        message: "Quantity must be at least 1",
+      });
+    }
+
+    const cart = await Cart.findOne({ userId });
+
+    if (!cart) {
+      return res.status(404).json({
+        success: false,
+        message: "Cart not found",
+      });
+    }
+
+    const item = cart.items.find(
+      (item) => item.productId.toString() === productId
+    );
+
+    if (!item) {
+      return res.status(404).json({
+        success: false,
+        message: "Product not found in cart",
+      });
+    }
+
+    item.quantity = quantity;
+
+    await cart.save();
+
+    return res.status(200).json({
+      success: true,
+      data: cart,
+    });
+  } catch (error) {
+    console.log(error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Failed to update quantity",
+    });
+  }
+};
+
+const removeFromCart = async (req, res) => {
+  try {
+    const { userId, productId } = req.body;
+
+    const cart = await Cart.findOne({ userId });
+
+    if (!cart) {
+      return res.status(404).json({
+        success: false,
+        message: "Cart not found",
+      });
+    }
+
+    cart.items = cart.items.filter(
+      (item) => item.productId.toString() !== productId
+    );
+
+    await cart.save();
+
+    return res.status(200).json({
+      success: true,
+      data: cart,
+    });
+  } catch (error) {
+    console.log(error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Failed to remove product",
+    });
+  }
+};
+
+module.exports={ addToCart ,fetchCartItems, updateCartQuantity, removeFromCart}

@@ -25,14 +25,14 @@ const ShoppingCart = ({ isOpen, onClose }) => {
 
       {/* Buttons */}
       <div className="px-4 flex items-center justify-between">
-        <button
+        <Link to="/cart"
           type="submit"
           className="group relative cursor-pointer overflow-hidden rounded-2xl bg-[#e84cb0] px-5 py-3 font-semibold text-[13px] text-white "
         >
           <span className="absolute inset-x-0 bottom-0 h-0 rounded-2xl bg-[#991b60] transition-all duration-500 ease-out group-hover:h-full" />
 
           <span className="relative z-10 text-sm">VIEW CART</span>
-        </button>
+        </Link>
 
         <button
           type="submit"

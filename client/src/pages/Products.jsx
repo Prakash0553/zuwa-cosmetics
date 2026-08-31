@@ -7,7 +7,7 @@ const Products = () => {
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>{error.message}</p>;
-  console.log(products)
+  //console.log(products)
 
   return (
     <div className="w-full mx-auto">
