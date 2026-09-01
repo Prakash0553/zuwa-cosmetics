@@ -6,16 +6,18 @@ import {
   useRemoveCart,
   useUpdateProduct,
 } from "../hooks/useCart";
+import { useCreateOrder } from "../hooks/useOrder";
+import toast from "react-hot-toast";
 
 const Cart = () => {
   const user = useSelector((state) => state.auth.user);
 
   const { data: products, isLoading, error } = useFetchCart(user?._id);
   const updateProduct = useUpdateProduct();
-  const removeCart = useRemoveCart()
+  const removeCart = useRemoveCart();
+  const { mutate: createOrder, isPending } = useCreateOrder();
 
-
-  console.log(products)
+  // console.log(products);
 
   const items = products?.data?.items || [];
 
@@ -199,9 +201,27 @@ const Cart = () => {
           <button
             type="button"
             className="mt-6 w-[180px] lg:w-full rounded-2xl bg-[#e83da8] py-4 text-base font-semibold text-white transition hover:bg-[#d92f98]"
-            onClick={() => console.log("Place order")}
+            onClick={() => {
+              createOrder(
+                {
+                  userId: user._id,
+                },
+                {
+                  onSuccess: (response) => {
+                    console.log(response);
+                    toast.success(response.message || "Your order is palced!");
+                  },
+                  onError: (error) => {
+                    console.log(error);
+                    toast.error(
+                      error.response?.data?.message || "Failed to add to cart",
+                    );
+                  },
+                },
+              );
+            }}
           >
-            PLACE ORDER
+            {isPending ? "PENDING" : " PLACE ORDER"}
           </button>
         </div>
       </div>

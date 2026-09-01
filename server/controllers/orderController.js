@@ -15,7 +15,7 @@ const createOrder = async (req, res) => {
     // Get user's cart with product details
     const cart = await Cart.findOne({ userId }).populate({
       path: "items.productId",
-      select: "title image price salePrice",
+      select: "name image price salePrice",
     });
 
     if (!cart) {
@@ -35,7 +35,7 @@ const createOrder = async (req, res) => {
     // Create order items
     const cartItems = cart.items.map((item) => ({
       productId: item.productId._id,
-      title: item.productId.title,
+      title: item.productId.name,
       image: item.productId.image,
       price: item.productId.salePrice || item.productId.price,
       quantity: item.quantity,
