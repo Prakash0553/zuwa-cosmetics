@@ -9,12 +9,14 @@ import ProductDetail from "./pages/ProductDetails";
 import { useState } from "react";
 import ShoppingCart from "./components/Cart";
 import Products from "./pages/Products";
-import AdminDashboard from "./admin/AdminDashboard";
-import AddProduct from "./admin/AddProduct";
-import AddCategory from "./admin/AddCategory";
 import Shop from "./pages/Shop";
 import ProfileMenu from "./components/Profile";
 import ViewCart from "./pages/Cart";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AddProduct from "./pages/admin/AddProduct";
+import AddCategory from "./pages/admin/AddCategory";
+import OrderList from "./pages/admin/AdminOrders";
+import ProductList from "./pages/admin/AdminProducts";
 
 const App = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -47,6 +49,8 @@ const App = () => {
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/add" element={<AddProduct />} />
         <Route path="/admin/addcat" element={<AddCategory />} />
+        <Route path="/admin/order" element={<OrderList />}/>
+        <Route path="/admin/products" element={<ProductList/>}/>
       </Routes>
       <Footer />
     </>

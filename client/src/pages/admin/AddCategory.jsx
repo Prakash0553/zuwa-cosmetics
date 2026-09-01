@@ -1,9 +1,9 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useCreateCategory } from "../hooks/useCategory";
+import { useCreateCategory } from "../../hooks/useCategory";
 
 const AddCategory = () => {
-  const { mutate, isPending } = useCreateCategory();
+  const { mutate, isPending } = useCreateCategory()
 
   const [formData, setFormData] = useState({
     name: "",

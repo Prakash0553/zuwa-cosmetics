@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useCreateProduct } from "../hooks/useProducts";
+import { useCreateProduct } from "../../hooks//useProducts";
 import toast from "react-hot-toast";
 
 const AddProduct = () => {
