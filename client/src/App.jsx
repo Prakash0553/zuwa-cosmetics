@@ -17,6 +17,7 @@ import AddProduct from "./pages/admin/AddProduct";
 import AddCategory from "./pages/admin/AddCategory";
 import OrderList from "./pages/admin/AdminOrders";
 import ProductList from "./pages/admin/AdminProducts";
+import CategoryList from "./pages/admin/AdminCategories";
 
 const App = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -51,6 +52,7 @@ const App = () => {
         <Route path="/admin/addcat" element={<AddCategory />} />
         <Route path="/admin/order" element={<OrderList />}/>
         <Route path="/admin/products" element={<ProductList/>}/>
+        <Route path="/admin/category" element={<CategoryList/>}/>
       </Routes>
       <Footer />
     </>

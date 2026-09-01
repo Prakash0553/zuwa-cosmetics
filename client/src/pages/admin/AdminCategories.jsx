@@ -14,9 +14,9 @@ const CategoryList = () => {
   return (
     <div className="w-full px-6 my-12">
       <div className="my-5 flex justify-end">
-        <Link to="/admin/add">
+        <Link to="/admin/addcat">
         <button className="rounded-lg bg-[#e846ad] px-5 py-2.5 font-medium text-white cursor-pointer">
-          Add Product
+          Add Category
         </button>
         </Link>
       </div>

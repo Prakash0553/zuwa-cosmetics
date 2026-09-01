@@ -2,19 +2,20 @@ import { FaHeart, FaCartShopping } from "react-icons/fa6";
 import { FaMinus, FaPlus, FaChevronRight } from "react-icons/fa";
 import { Link, useParams } from "react-router";
 import { useProductById } from "../hooks/useProducts";
-import { useAddToCart,  } from "../hooks/useCart";
+import { useAddToCart } from "../hooks/useCart";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import ReviewModal from "../components/ReviewModal";
 
 const ProductDetail = () => {
   const { id } = useParams();
   const user = useSelector((state) => state.auth.user);
   const [quantity, setQuantity] = useState(1);
+  const [isReviewOpen, setIsReviewOpen] = useState(false);
 
   const { data: product, isLoading, error } = useProductById(id);
   const { mutate, isPending } = useAddToCart();
- 
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>{error.message}</p>;
@@ -45,11 +46,11 @@ const ProductDetail = () => {
       <div className="bg-[#fbe8f6] px-4 py-3 text-lg text-[#404040]">
         <div className="flex flex-wrap items-center gap-4">
           <Link to="/">
-          <span className="text-sm hover:text-[#e846ad]">Home</span>
+            <span className="text-sm hover:text-[#e846ad]">Home</span>
           </Link>
           <FaChevronRight className="text-sm text-gray-400" />
           <Link to="/products">
-          <span className="text-sm hover:text-[#e846ad]">Products</span>
+            <span className="text-sm hover:text-[#e846ad]">Products</span>
           </Link>
           <FaChevronRight className="text-sm text-gray-400" />
           <span className="text-sm">Vitamin C effervescent tablets</span>
@@ -115,7 +116,8 @@ const ProductDetail = () => {
               <button
                 className="text-gray-400"
                 type="button"
-                disabled={quantity <= 1} onClick={() => setQuantity(quantity - 1)}
+                disabled={quantity <= 1}
+                onClick={() => setQuantity(quantity - 1)}
               >
                 <FaMinus />
               </button>
@@ -145,6 +147,28 @@ const ProductDetail = () => {
             </button>
           </div>
         </div>
+      </div>
+
+      {/* review */}
+      <div className="w-full bg-[#f7f7f7]">
+        <div className="flex items-center justify-between px-6 py-12 mb-20">
+          <h2 className="text-3xl font-semibold">Customer Reviews</h2>
+          <button
+            onClick={() => setIsReviewOpen(true)}
+            type="submit"
+            className="group relative cursor-pointer overflow-hidden rounded-2xl bg-[#e84cb0] px-3 py-3 font-semibold text-[13px] text-white flex items-center gap-2"
+          >
+            <span className="absolute inset-x-0 bottom-0 h-0 rounded-2xl bg-[#991b60] transition-all duration-500 ease-out group-hover:h-full" />
+
+            <span className="relative z-10 text-sm uppercase">
+              Write a review
+            </span>
+          </button>
+        </div>
+        <ReviewModal
+          isOpen={isReviewOpen}
+          onClose={() => setIsReviewOpen(false)}
+        />
       </div>
     </div>
   );

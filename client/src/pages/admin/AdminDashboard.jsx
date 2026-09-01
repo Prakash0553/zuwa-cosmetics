@@ -24,11 +24,11 @@ const AdminDashboard = () => {
           <button
             type="submit"
             className="group relative cursor-pointer overflow-hidden rounded-2xl bg-[#e84cb0] px-5 py-4 font-semibold text-white text-center"
-            onClick={()=> navigate("/admin/add")}
+            onClick={()=> navigate("/admin/category")}
           >
             <span className="absolute inset-x-0 bottom-0 h-0 rounded-2xl bg-[#991b60] transition-all duration-500 ease-out group-hover:h-full" />
 
-            <span className="relative z-10 text-lg">+ Add Product</span>
+            <span className="relative z-10 text-lg">Manage Categories</span>
             
           </button>
 
@@ -45,7 +45,7 @@ const AdminDashboard = () => {
           <button
             type="submit"
             className="group relative cursor-pointer overflow-hidden rounded-2xl bg-[#e84cb0] px-5 py-4 font-semibold text-white text-center"
-            onClick={()=> navigate("/admin/orders")}
+            onClick={()=> navigate("/admin/order")}
           >
             <span className="absolute inset-x-0 bottom-0 h-0 rounded-2xl bg-[#991b60] transition-all duration-500 ease-out group-hover:h-full" />
             <span className="relative z-10 text-lg">🚚 Manage Orders</span>     
