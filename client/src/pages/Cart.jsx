@@ -3,8 +3,8 @@ import { Link } from "react-router";
 import { useSelector } from "react-redux";
 import {
   useFetchCart,
-  useUpdateProduct,
   useRemoveCart,
+  useUpdateProduct,
 } from "../hooks/useCart";
 
 const Cart = () => {
@@ -12,7 +12,10 @@ const Cart = () => {
 
   const { data: products, isLoading, error } = useFetchCart(user?._id);
   const updateProduct = useUpdateProduct();
-  const removeCart = useRemoveCart();
+  const removeCart = useRemoveCart()
+
+
+  console.log(products)
 
   const items = products?.data?.items || [];
 

@@ -168,7 +168,7 @@ const updateCartQuantity = async (req, res) => {
 
 const removeFromCart = async (req, res) => {
   try {
-    const { userId, productId } = req.body;
+    const { userId, productId } = req.params;
 
     const cart = await Cart.findOne({ userId });
 

@@ -1,17 +1,20 @@
 import { FaHeart, FaCartShopping } from "react-icons/fa6";
 import { FaMinus, FaPlus, FaChevronRight } from "react-icons/fa";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import { useProductById } from "../hooks/useProducts";
-import { useAddToCart } from "../hooks/useCart";
+import { useAddToCart,  } from "../hooks/useCart";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
+import { useState } from "react";
 
 const ProductDetail = () => {
   const { id } = useParams();
   const user = useSelector((state) => state.auth.user);
+  const [quantity, setQuantity] = useState(1);
 
   const { data: product, isLoading, error } = useProductById(id);
   const { mutate, isPending } = useAddToCart();
+ 
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>{error.message}</p>;
@@ -22,7 +25,7 @@ const ProductDetail = () => {
       {
         userId: user._id,
         productId: product._id,
-        quantity: 1,
+        quantity: quantity,
       },
       {
         onSuccess: (response) => {
@@ -41,9 +44,13 @@ const ProductDetail = () => {
       {/* Breadcrumb */}
       <div className="bg-[#fbe8f6] px-4 py-3 text-lg text-[#404040]">
         <div className="flex flex-wrap items-center gap-4">
+          <Link to="/">
           <span className="text-sm hover:text-[#e846ad]">Home</span>
+          </Link>
           <FaChevronRight className="text-sm text-gray-400" />
+          <Link to="/products">
           <span className="text-sm hover:text-[#e846ad]">Products</span>
+          </Link>
           <FaChevronRight className="text-sm text-gray-400" />
           <span className="text-sm">Vitamin C effervescent tablets</span>
         </div>
@@ -105,13 +112,21 @@ const ProductDetail = () => {
 
           <div className="mt-4 flex flex-wrap items-center gap-6">
             <div className="flex h-16 w-72 items-center justify-between rounded-2xl border px-8">
-              <button className="text-gray-400">
+              <button
+                className="text-gray-400"
+                type="button"
+                disabled={quantity <= 1} onClick={() => setQuantity(quantity - 1)}
+              >
                 <FaMinus />
               </button>
 
-              <span className="text-xl font-semibold">1</span>
+              <span className="text-xl font-semibold">{quantity}</span>
 
-              <button className="text-gray-400">
+              <button
+                className="text-gray-400"
+                type="button"
+                onClick={() => setQuantity(quantity + 1)}
+              >
                 <FaPlus />
               </button>
             </div>

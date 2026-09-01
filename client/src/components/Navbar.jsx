@@ -6,7 +6,7 @@ import logo from "../assets/logo.webp";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
-const Navbar = ({ onCartClick, onProfileClick }) => {
+const Navbar = ({ onProfileClick }) => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -103,12 +103,13 @@ const Navbar = ({ onCartClick, onProfileClick }) => {
             </button>
 
             {/* Cart */}
+            <Link to="/cart">
             <button
-              onClick={onCartClick}
               className="shrink-0 transition-transform duration-200 hover:scale-110"
             >
               <ShoppingBag size={26} strokeWidth={1.4} />
             </button>
+            </Link>
 
             {/* Login */}
             <button
