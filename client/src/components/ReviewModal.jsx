@@ -1,4 +1,8 @@
 import { useState } from "react";
+import { useCreateReview, useGetReviews } from "../hooks/useReview";
+import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router";
 
 const ratings = [
   { label: "Excellent", stars: 5 },
@@ -8,21 +12,44 @@ const ratings = [
   { label: "Terrible", stars: 1 },
 ];
 
-export default function ReviewModal({ isOpen, onClose }) {
+export default function ReviewModal({ isOpen, onClose, productId, userId }) {
   const [selectedRating, setSelectedRating] = useState(1);
   const [comment, setComment] = useState("");
+  const { id} = useParams();
+
+  const user = useSelector((state) => state.auth.user);
+  //console.log(user)
+  const { mutate, isPending } = useCreateReview();
+  const { data } = useGetReviews(id);
+  console.log(data)
 
   if (!isOpen) return null;
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log({
-      rating: selectedRating,
-      comment,
-    });
+    mutate(
+      {
+        userId,
+        productId,
+        rating: selectedRating,
+        comment,
+      },
+      {
+        onSuccess: () => {
+          toast.success("Review submitted successfully!");
+          setComment("");
+          setSelectedRating(1);
+          onClose();
+        },
 
-    onClose();
+        onError: (error) => {
+          toast.error(
+            error?.response?.data?.message || "Failed to submit review",
+          );
+        },
+      },
+    );
   };
 
   return (
@@ -94,7 +121,9 @@ export default function ReviewModal({ isOpen, onClose }) {
           >
             <span className="absolute inset-x-0 bottom-0 h-0 rounded-2xl bg-[#991b60] transition-all duration-500 ease-out group-hover:h-full" />
 
-            <span className="relative z-10 text-sm uppercase">Submit</span>
+            <span className="relative z-10 text-sm uppercase">
+              {isPending ? "SUBMITTING..." : "SUBMIT"}
+            </span>
           </button>
         </form>
       </div>

@@ -168,6 +168,8 @@ const ProductDetail = () => {
         <ReviewModal
           isOpen={isReviewOpen}
           onClose={() => setIsReviewOpen(false)}
+          productId={product._id}
+          userId={user._id}
         />
       </div>
     </div>
