@@ -3,11 +3,18 @@ const ReviewCard = ({ image, name, rating, review }) => {
     <div className="relative w-full max-w-[780px] min-h-[300px] rounded-2xl bg-[#fbe8f6] px-6 py-5">
       <div className="flex justify-between">
         <div>
-          <img
-            src={image}
-            alt=""
-            className="h-[66px] w-[66px] rounded-full border-4 border-white object-cover"
-          />
+          {image ? (
+            <img
+              src={image}
+              alt={name}
+              className="h-[66px] w-[66px] rounded-full border-4 border-white object-cover"
+            />
+          ) : (
+            <div className="h-[66px] w-[66px] rounded-full border-4 border-white object-cover flex items-center justify-center">
+              {" "}
+              {name?.charAt(0).toUpperCase()}
+            </div>
+          )}
           <h3 className="mt-5 text-base font-semibold text-[#1d1920]">
             {name}
           </h3>

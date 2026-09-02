@@ -1,28 +1,11 @@
 import ReviewCard from "./ReviewCard";
-import ashma from "../assets/ashma.webp";
+import { useGetAllReviews } from "../hooks/useReview";
 
-const reviews = [
-  {
-    image: ashma,
-    name: "Ashma",
-    rating: 5,
-    review: "i just love the product and yesley kam garxa hai❤️",
-  },
-  {
-    image: ashma,
-    name: "Sita",
-    rating: 5,
-    review: "Amazing product. I really loved the quality and results.❤️",
-  },
-  {
-    image: ashma,
-    name: "Prakriti",
-    rating: 4,
-    review: "Really good product and the delivery was also very fast.❤️",
-  },
-];
 
 const Review = () => {
+  const { data } = useGetAllReviews();
+  //console.log(data);
+
   return (
     <div className="px-6 flex flex-col items-center justify-center">
       <h1 className="text-4xl font-semibold mb-2 text-center py-16">
@@ -30,13 +13,13 @@ const Review = () => {
       </h1>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {reviews.map((review, index) => (
+        {data?.reviews?.map((review) => (
           <ReviewCard
-            key={index}
-            image={review.image}
-            name={review.name}
+            key={review._id}
+            image={review.userId?.image}
+            name={review.userId?.name}
             rating={review.rating}
-            review={review.review}
+            review={review.comment}
           />
         ))}
       </div>

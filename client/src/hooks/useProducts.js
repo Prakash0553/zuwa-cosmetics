@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { getProducts, createProduct, getProductById } from "../api/productApi";
+import { getProducts, createProduct, getProductById, deleteProduct } from "../api/productApi";
 
 export const useProducts = () => {
   return useQuery({
@@ -15,8 +15,15 @@ export const useProductById = (id) => {
   });
 };
 
+
 export const useCreateProduct = () => {
   return useMutation({
     mutationFn: createProduct,
+  });
+};
+
+export const useDeleteProduct = () => {
+  return useMutation({
+    mutationFn: deleteProduct,
   });
 };

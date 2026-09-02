@@ -12,3 +12,8 @@ export const getReviews = async (productId) => {
 
   return response.data;
 };
+
+export const getAllReviews = async () => {
+  const response = await axios.get(`${API_URL}/all`);
+  return response.data;
+};

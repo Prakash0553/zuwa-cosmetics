@@ -52,27 +52,6 @@ const AdminDashboard = () => {
           </button>
         </div>
       </div>
-
-      <p>user</p>
-
-      <div>
-        <div>
-          <h4>Total Orders</h4>
-          <div>orders</div>
-        </div>
-        <div>
-          <h4>Total Products</h4>
-          <div>total users</div>
-        </div>
-        <div>
-          <h4>Total Users</h4>
-          <div>otalUsers</div>
-        </div>
-        <div>
-          <h4>Total Revenue</h4>
-          <div>total revenue</div>
-        </div>
-      </div>
     </div>
   );
 };

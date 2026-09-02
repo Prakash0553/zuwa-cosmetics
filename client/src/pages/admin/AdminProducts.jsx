@@ -1,10 +1,26 @@
 import { Link } from "react-router";
-import { useProducts } from "../../hooks/useProducts";
-import {DeleteIcon} from "lucide-react"
+import { useDeleteProduct, useProducts } from "../../hooks/useProducts";
+import { DeleteIcon } from "lucide-react";
+import toast from "react-hot-toast";
 
 const ProductList = () => {
   const { data: products, isPending, error } = useProducts();
+  const { mutate: deleteProduct } = useDeleteProduct();
+
   console.log(products);
+
+  const handleDelete = (id) => {
+    deleteProduct(id, {
+      onSuccess: () => {
+        toast.success("Product deleted successfully");
+      },
+      onError: (error) => {
+        toast.error(
+          error?.response?.data?.message || "Failed to delete product",
+        );
+      },
+    });
+  };
 
   const TABLE_HEAD = ["image", "tItle", "_id", "edit", "delete"];
 
@@ -15,9 +31,9 @@ const ProductList = () => {
     <div className="w-full px-6 my-12">
       <div className="my-5 flex justify-end">
         <Link to="/admin/add">
-        <button className="rounded-lg bg-[#e846ad] px-5 py-2.5 font-medium text-white cursor-pointer">
-          Add Product
-        </button>
+          <button className="rounded-lg bg-[#e846ad] px-5 py-2.5 font-medium text-white cursor-pointer">
+            Add Product
+          </button>
         </Link>
       </div>
 
@@ -72,8 +88,8 @@ const ProductList = () => {
 
                 {/* DELETE */}
                 <td className="px-6 py-4">
-                  <button>
-                  <DeleteIcon fill="#e846ad"/>
+                  <button onClick={() => handleDelete(product._id)}>
+                    <DeleteIcon fill="#e846ad" />
                   </button>
                 </td>
               </tr>

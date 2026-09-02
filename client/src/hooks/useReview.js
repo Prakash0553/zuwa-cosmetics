@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { createReview, getReviews } from "../api/reviewApi";
+import { createReview, getAllReviews, getReviews } from "../api/reviewApi";
 
 export const useCreateReview = () => {
   return useMutation({
@@ -14,3 +14,10 @@ export const useGetReviews = (productId) => {
     enabled: !!productId,
   });
 };
+
+export const useGetAllReviews= () => {
+  return useQuery({
+    queryKey: ["reviews"],
+    queryFn: () =>getAllReviews()
+  })
+}

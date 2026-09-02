@@ -84,7 +84,7 @@ const AddProduct = () => {
 
           <div>
             <label className=" block  text-base font-semibold text-[#555] mb-2">
-              Product Name <span className="text-red-500">*</span>
+              Product Description <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
