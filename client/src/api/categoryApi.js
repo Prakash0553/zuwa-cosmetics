@@ -11,3 +11,13 @@ export const createCategory = async (formData) => {
   const response = await axios.post(API_URL, formData);
   return response.data;
 };
+
+export const getCategoriesWithProducts = async () => {
+  const response = await axios.get(`${API_URL}/with-products`);
+  return response.data;
+};
+
+export const getProductsByCategory = async (id) => {
+  const response = await axios.get(`${API_URL}/category/${id}`);
+  return response.data;
+};

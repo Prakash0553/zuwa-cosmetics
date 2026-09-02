@@ -21,7 +21,7 @@ const Explore = () => {
 
           <div className="group flex flex-col items-center transition duration-500 ease-in-out hover:-translate-y-5">
             <div className="flex h-38 w-38 items-center justify-center rounded-full bg-white transition duration-500 ease-in-out group-hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)]">
-              <Link>
+              <Link to="/shop">
                 <img src={soap} width={80} alt="Soap" />
               </Link>
             </div>
@@ -33,7 +33,7 @@ const Explore = () => {
 
           <div className="group flex flex-col items-center transition duration-500 ease-in-out hover:-translate-y-5">
             <div className="flex h-38 w-38 items-center justify-center rounded-full bg-white transition duration-500 ease-in-out group-hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)]">
-              <Link>
+              <Link to="/shop">
                 <img src={toner} width={80} alt="Soap" />
               </Link>
             </div>
@@ -45,7 +45,7 @@ const Explore = () => {
 
           <div className="group flex flex-col items-center transition duration-500 ease-in-out hover:-translate-y-5">
             <div className="flex h-38 w-38 items-center justify-center rounded-full bg-white transition duration-500 ease-in-out group-hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)]">
-              <Link>
+              <Link to="/shop">
                 <img src={sunscreen} width={80} alt="Soap" />
               </Link>
             </div>
@@ -57,7 +57,7 @@ const Explore = () => {
 
           <div className="group flex flex-col items-center transition duration-500 ease-in-out hover:-translate-y-5">
             <div className="flex h-38 w-38 items-center justify-center rounded-full bg-white transition duration-500 ease-in-out group-hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)]">
-              <Link>
+              <Link to="/shop">
                 <img src={serum} width={80} alt="Soap" />
               </Link>
             </div>
@@ -69,7 +69,7 @@ const Explore = () => {
 
           <div className="group flex flex-col items-center transition duration-500 ease-in-out hover:-translate-y-5">
             <div className="flex h-38 w-38 items-center justify-center rounded-full bg-white transition duration-500 ease-in-out group-hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)]">
-              <Link>
+              <Link to="/shop">
                 <img src={mask} width={80} alt="Soap" />
               </Link>
             </div>
@@ -81,7 +81,7 @@ const Explore = () => {
 
           <div className="group flex flex-col items-center transition duration-500 ease-in-out hover:-translate-y-5">
             <div className="flex h-38 w-38 items-center justify-center rounded-full bg-white transition duration-500 ease-in-out group-hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)]">
-              <Link>
+              <Link to="/shop">
                 <img src={cleanser} width={80} alt="Soap" />
               </Link>
             </div>

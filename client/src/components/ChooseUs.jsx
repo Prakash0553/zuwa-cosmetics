@@ -3,6 +3,7 @@ import hand from "../assets/hand.webp";
 import love from "../assets/love.webp";
 import fast from "../assets/fast.webp";
 import plant from "../assets/plant.webp";
+import { Link } from "react-router";
 
 const offers = [
   {
@@ -55,10 +56,11 @@ const ChooseUs = () => {
 
               <p className="text-sm text-[#404040] text-center pt-4 leading-5">{offer.description}</p>
             </div>
-
+            <Link to="/shop">
             <div className="w-[74px] h-[74px] rounded-full absolute -top-[37px] left-1/2 -translate-x-1/2 bg-[#fbe8f6] flex items-center justify-center">
               <img src={offer.img} width={42} alt={offer.title} />
             </div>
+            </Link>
           </div>
         ))}
       </div>

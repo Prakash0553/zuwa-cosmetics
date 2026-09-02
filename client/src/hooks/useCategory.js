@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { createCategory, getCategories } from "../api/categoryApi";
+import { createCategory, getCategories, getCategoriesWithProducts, getProductsByCategory } from "../api/categoryApi";
 
 export const useGetCategory = () => {
   return useQuery({
@@ -11,5 +11,20 @@ export const useGetCategory = () => {
 export const useCreateCategory = () => {
   return useMutation({
     mutationFn: createCategory,
+  });
+};
+
+export const useCategoriesWithProducts = () => {
+  return useQuery({
+    queryKey: ["categories-with-products"],
+    queryFn: getCategoriesWithProducts,
+  });
+};
+
+export const useProductsByCategory = (id) => {
+  return useQuery({
+    queryKey: ["products", "category", id],
+    queryFn: () => getProductsByCategory(id),
+    enabled: !!id,
   });
 };

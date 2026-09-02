@@ -10,7 +10,7 @@ const NoHeader = () => {
   return (
     <div className="w-full bg-[#991b60]">
       <div className="py-16 grid grid-cols-1 lg:grid-cols-2 gap-8 px-5">
-      {products.map((product, index) => (
+      {products.slice(0,4).map((product, index) => (
         <div key={index} className="">
 
           {/* Image */}

@@ -15,7 +15,7 @@ const NewArrival = () => {
       </div>
     
     <div className="grid grid-cols-1 gap-10 px-6 md:grid-cols-2 lg:grid-cols-4 mt-6">
-      {products && products.map((product, index) => (
+      {products && products.slice(0,4).map((product, index) => (
         <ProductCard
           key={index}
           id={product._id}

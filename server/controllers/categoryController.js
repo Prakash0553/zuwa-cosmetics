@@ -1,4 +1,5 @@
 const Category = require("../model/Category.js")
+const Product = require("../model/Product.js")
 const cloudinary = require("../config/cloudinary.js")
 
 const createCategory = async (req, res) => {
@@ -80,6 +81,44 @@ const updateCategory = async (req, res) => {
   }
 };
 
+const getCategoriesWithProducts = async (req, res) => {
+  try {
+    const categories = await Category.find();
+
+    const categoriesWithProducts = await Promise.all(
+      categories.map(async (category) => {
+        const productCount = await Product.countDocuments({
+          category: category._id,
+        });
+
+        return {
+          ...category.toObject(),
+          productCount,
+        };
+      }),
+    );
+
+    res.status(200).json(categoriesWithProducts);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+const getProductsByCategory = async (req, res) => {
+  try {
+    const products = await Product.find({
+      category: req.params.id,
+    });
+
+    res.status(200).json(products);
+  } catch (error) {
+    console.error("GET PRODUCTS BY CATEGORY ERROR:", error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
 const deleteCategory = async (req, res) => {
   try {
     const category = await Category.findById(req.params.id);
@@ -102,4 +141,4 @@ const deleteCategory = async (req, res) => {
   }
 };
 
-module.exports ={ createCategory, getCategories, getCategory, updateCategory, deleteCategory}
+module.exports ={ createCategory, getCategories, getCategory, updateCategory, deleteCategory, getCategoriesWithProducts, getProductsByCategory}

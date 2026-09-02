@@ -1,9 +1,9 @@
 import { Link } from "react-router";
 import CategoryCard from "../components/CategoryCard";
-import { useGetCategory } from "../hooks/useCategory";
+import {useGetCategory,} from "../hooks/useCategory";
 
 const Shop = () => {
-  const {data: categories, isLoading, error} = useGetCategory()
+  const { data: categories, isLoading, error } = useGetCategory();
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>{error.message}</p>;
@@ -27,10 +27,11 @@ const Shop = () => {
         {categories &&
           categories.map((cat, index) => (
             <CategoryCard
-              key={index}
+              key={cat._id}
               image={cat.image}
               category={cat.name}
-              products={cat.products}
+              categoryId={cat._id}
+              productCount={cat.productCount}
             />
           ))}
       </div>

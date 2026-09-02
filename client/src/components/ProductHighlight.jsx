@@ -3,6 +3,7 @@ import tooth from "../assets/tooth.svg";
 import light from "../assets/light.svg";
 import hand  from "../assets/hand1.svg";
 import face from "../assets/face.webp";
+import { Link } from "react-router";
 
 
 const ProductHighlight = () => {
@@ -20,6 +21,7 @@ const ProductHighlight = () => {
               Zuwa Cosmetics Pure Coconut Oil (100ml) is a versatile, 100% vegan and organic product designed to enhance your daily wellness and beauty routines. Sourced from natural ingredients, it offers multiple benefits for oral care, skin, and hair
             </p>
 
+            <Link to="/shop">
             <button
               type="submit"
               className="group relative overflow-hiddens   rounded-2xl bg-[#e846ad] px-9 py-4 font-semibold text-[13px] text-white cursor-pointer"
@@ -27,6 +29,7 @@ const ProductHighlight = () => {
               <span className="absolute inset-x-0 bottom-0 h-0  bg-[#991b60] transition-all duration-500 ease-out group-hover:h-full rounded-2xl" />
               <span className="relative z-10">SEE OFFERS</span>
             </button>
+            </Link>
           </div>
         </div>
 
@@ -77,7 +80,7 @@ const ProductHighlight = () => {
           <div className=" absolute bottom-[20%] left-[67%] z-10 w-[170px] rounded-2xl bg-[#fbe8f6]  text-center sm:right-10 lg:right-0 px-2 py-4">
 
             <div className="mx-auto flex h-[66px] w-[66px] items-center justify-center rounded-full bg-white">
-              <img src={lips} alt="" srcSet="" />
+              <img src={light} alt="" srcSet="" />
             </div>
 
             <h3 className="mt-3 text-2xl font-semibold  text-[#3e3e3e]">
@@ -93,7 +96,7 @@ const ProductHighlight = () => {
           <div className=" absolute bottom-[2%] right-[34%] z-10 w-[170px] rounded-2xl bg-[#fbe8f6] text-center px-2 py-4">
 
             <div className="mx-auto flex h-[66px] w-[66px] items-center justify-center rounded-full bg-white">
-              <img src={lips} alt="" srcSet="" />
+              <img src={hand} alt="" srcSet="" />
             </div>
 
             <h3 className="mt-3 text-2xl font-semibold  text-[#3e3e3e]">
